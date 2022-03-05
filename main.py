@@ -24,6 +24,7 @@ def run():
             res = send_request(query, variables)
             if res.status_code != 200:
                 print(f"Error sending api request: {res}")
+                continue
             return_data = parse_res(res, data)
             print(f"Relaying Message: \n {return_data} \n from: \n{res.text}")
             s.write(bytes(res.text, "utf-8"))
@@ -85,3 +86,7 @@ def find_arduino(port=None):
             if p.manufacturer is not None and "Arduino" in p.manufacturer:
                 port = p.device
     return port
+
+
+if __name__ == "__main__":
+    run()
