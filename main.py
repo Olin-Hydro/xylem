@@ -27,7 +27,7 @@ def run():
                 continue
             return_data = parse_res(res, data)
             print(f"Relaying Message: \n {return_data} \n from: \n{res.text}")
-            s.write(bytes(return_data, "utf-8"))
+            s.write(bytes(str(return_data), "utf-8"))
 
 
 def parse_res(res, data):
