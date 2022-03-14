@@ -4,7 +4,7 @@ import requests
 import json
 
 
-SERIAL_PORT = os.getenv("SERIAL_PORT", "Missing SERIAL_PORT environment variable")
+SERIAL_PORT = os.getenv("SERIAL_PORT")
 BAUDRATE = os.getenv("BAUDRATE", "Missing BAUDRATE environment variable")
 API_URL = os.getenv("API_URL", "Missing API_URL environment variable")
 SYS_PARAMS = "sysParams"
