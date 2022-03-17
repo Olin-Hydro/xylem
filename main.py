@@ -22,7 +22,10 @@ def run():
                 continue
             query, variables = create_query(data)
             res = send_request(query, variables)
-            if res.status_code != 200:
+            if not res:
+                print("Request timed out")
+                continue
+            elif res.status_code != 200:
                 print(f"Error sending api request: {res}")
                 continue
             return_data = parse_res(res, data)
@@ -73,10 +76,15 @@ def create_query(data: dict):
 
 
 def send_request(query, variables):
-    return requests.post(
-        API_URL,
-        json={"query": query, "variables": variables},
-    )
+    try:
+        return requests.post(
+            API_URL,
+            json={"query": query, "variables": variables},
+            timeout=10
+        )
+    except:
+        return None
+
 
 
 def find_arduino(port=None):
